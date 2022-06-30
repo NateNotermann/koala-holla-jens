@@ -6,12 +6,14 @@ $(document).ready(function () {
 	setupClickListeners();
 	// load existing koalas on page load
 	getKoalas();
+  $(document).on('click', '#transferBtn' )
+  $(document).on('click', '#deleteBtn' )
 }); // end doc ready
 
 function setupClickListeners() {
-	$('#addButton').on('click', function () {
+	$('#addKoalaBtn').on('click', function () {
 		// Nate - changed class to #addKoalaBtn
-		console.log('in addButton on click');
+		console.log('in addKoalaBtn on click');
 		// get user input and put in an object
 		// NOT WORKING YET :(
 		// using a test object
@@ -23,7 +25,21 @@ function setupClickListeners() {
 			notes: 'testName',
 		};
 		// call saveKoala with the new obejct
-		saveKoala(koalaToSend);
+    console.log('koala to send', koalaToSend );
+    $.ajax({
+      url: '/koalas',
+      method: 'POST',
+      data: koalaToSend,
+    })
+      .then(function (response) {
+        console.log('test GET response,', response);
+        getKoalas();
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('Error in koalaToSend');
+      });
+    console.log('end of koalaToSend');
 	});
 }
 
@@ -60,7 +76,9 @@ function renderKoala(koalas) {
     <td>${koala.age}</td>
     <td>${koala.gender}</td>
     <td>${koala.ready_to_transfer}</td>
+    <button data-id="${koala.id}" id="transferBtn">Transfer</button>
     <td>${koala.notes}</td>
+    <button data-id="${koala.id}" id="deleteBtn">>Delete</button>
     </tr>
     `);
 	}
