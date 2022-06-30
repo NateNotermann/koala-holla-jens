@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
         INSERT INTO "koalas" ("name", "gender", "age", "ready_to_transfer", "notes")
         VALUES ($1, $2, $3, $4, $5);
     `;
-    pool.query(queryText, [newKoala.name, newKoala.gender, newKoala.age, newKoala.readyToTransfer, newKoala.notes])
+    pool.query(queryText, [newKoala.name, newKoala.gender, newKoala.age, newKoala.readyForTransfer, newKoala.notes])
     .then((result)=>{
         res.sendStatus(201);
     }).catch((error)=>{
