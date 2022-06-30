@@ -6,8 +6,8 @@ $(document).ready(function () {
 	setupClickListeners();
 	// load existing koalas on page load
 	getKoalas();
-  $(document).on('click', '#transferBtn' )
-  $(document).on('click', '#deleteBtn' )
+  $(document).on('click', '#transferBtn', updateKoala )
+  $(document).on('click', '#deleteBtn', deleteKoala )
 }); // end doc ready
 
 function setupClickListeners() {
@@ -83,4 +83,36 @@ function renderKoala(koalas) {
     `);
 	}
 	$('input').val('');
+}
+
+
+function deleteKoala(){
+  let koalaId = $(this).data('id');
+  $.ajax({
+    type: 'DELETE',
+    url:`/koalas/${koalaId}`,
+  })
+  .then ( function(response) {
+    console.log('its deleted' );
+    getKoalas();
+  })
+  .catch ( function(error) {
+    alert('Error deleting Daddy O', error)
+  })
+}
+
+
+function updateKoala(){
+  let koalaId = $(this).data('id');
+  $.ajax({
+    type: 'PUT',
+    url:`/koalas/${koalaId}`,
+  })
+  .then ( function(response) {
+    console.log('its UPDATED' );
+    getKoalas();
+  })
+  .catch ( function(error) {
+    alert('Error UPDATED Daddy O', error)
+  })
 }
