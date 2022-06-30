@@ -1,5 +1,5 @@
 const express = require('express');
-const koalaRouter = express.Router();
+const router = express.Router();
 const pool = require('../modules/pool.js');
 //
 // DB CONNECTION
@@ -64,6 +64,6 @@ router.delete('/:id', (req, res) => {
             console.log(`AY! error deleting with query ${queryText}: ${error}`);
             res.sendStatus(500); // a good server always responds
         })
-  });
+});
 
-module.exports = koalaRouter;
+module.exports = router;
