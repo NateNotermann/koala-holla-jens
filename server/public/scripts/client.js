@@ -19,11 +19,11 @@ function setupClickListeners() {
 		// using a test object
     //change
 		let koalaToSend = {
-			name: '#nameInput'.val(),
-			age: '#ageInput'.val(),
-			gender: '#genderInput'.val(),
-			readyForTransfer: '#transferInput'.val(),
-			notes: '#notesInput'.val(),
+			name: $('#nameInput').val(),
+			age: $('#ageInput').val(),
+			gender: $('#genderInput').val(),
+			readyForTransfer: $('#transferInput').val(),
+			notes: $('#notesInput').val(),
 		};
 		// call saveKoala with the new obejct
     console.log('koala to send', koalaToSend );
