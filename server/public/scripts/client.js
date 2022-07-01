@@ -6,8 +6,8 @@ $(document).ready(function () {
 	setupClickListeners();
 	// load existing koalas on page load
 	getKoalas();
-  $(document).on('click', '#transferBtn', updateKoala )
-  $(document).on('click', '#deleteBtn', deleteKoala )
+	$(document).on('click', '#transferBtn', updateKoala);
+	$(document).on('click', '#deleteBtn', deleteKoala);
 }); // end doc ready
 
 function setupClickListeners() {
@@ -17,7 +17,7 @@ function setupClickListeners() {
 		// get user input and put in an object
 		// NOT WORKING YET :(
 		// using a test object
-    //change
+		//change
 		let koalaToSend = {
 			name: $('#nameInput').val(),
 			age: $('#ageInput').val(),
@@ -26,21 +26,21 @@ function setupClickListeners() {
 			notes: $('#notesInput').val(),
 		};
 		// call saveKoala with the new obejct
-    console.log('koala to send', koalaToSend );
-    $.ajax({
-      url: '/koalas',
-      method: 'POST',
-      data: koalaToSend,
-    })
-      .then(function (response) {
-        console.log('test GET response,', response);
-        getKoalas();
-      })
-      .catch(function (error) {
-        console.log(error);
-        alert('Error in koalaToSend');
-      });
-    console.log('end of koalaToSend');
+		console.log('koala to send', koalaToSend);
+		$.ajax({
+			url: '/koalas',
+			method: 'POST',
+			data: koalaToSend,
+		})
+			.then(function (response) {
+				console.log('test GET response,', response);
+				getKoalas();
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert('Error in koalaToSend');
+			});
+		console.log('end of koalaToSend');
 	});
 }
 
@@ -77,43 +77,41 @@ function renderKoala(koalas) {
     <td>${koala.age}</td>
     <td>${koala.gender}</td>
     <td>${koala.ready_to_transfer}</td>
-    <button data-id="${koala.id}" id="transferBtn">Transfer</button>
     <td>${koala.notes}</td>
-    <button data-id="${koala.id}" id="deleteBtn">>Delete</button>
+    <td><button data-id="${koala.id}" id="transferBtn">Transfer</button></td>
+    <td><button data-id="${koala.id}" id="deleteBtn">>Delete</button></td>
     </tr>
     `);
 	}
 	$('input').val('');
 }
 
-
-function deleteKoala(){
-  let koalaId = $(this).data('id');
-  $.ajax({
-    type: 'DELETE',
-    url:`/koalas/${koalaId}`,
-  })
-  .then ( function(response) {
-    console.log('its deleted' );
-    getKoalas();
-  })
-  .catch ( function(error) {
-    alert('Error deleting Daddy O', error)
-  })
+function deleteKoala() {
+	let koalaId = $(this).data('id');
+	$.ajax({
+		type: 'DELETE',
+		url: `/koalas/${koalaId}`,
+	})
+		.then(function (response) {
+			console.log('its deleted');
+			getKoalas();
+		})
+		.catch(function (error) {
+			alert('Error deleting Daddy O', error);
+		});
 }
 
-
-function updateKoala(){
-  let koalaId = $(this).data('id');
-  $.ajax({
-    type: 'PUT',
-    url:`/koalas/${koalaId}`,
-  })
-  .then ( function(response) {
-    console.log('its UPDATED' );
-    getKoalas();
-  })
-  .catch ( function(error) {
-    alert('Error UPDATED Daddy O', error)
-  })
+function updateKoala() {
+	let koalaId = $(this).data('id');
+	$.ajax({
+		type: 'PUT',
+		url: `/koalas/${koalaId}`,
+	})
+		.then(function (response) {
+			console.log('its UPDATED');
+			getKoalas();
+		})
+		.catch(function (error) {
+			alert('Error UPDATED Daddy O', error);
+		});
 }
