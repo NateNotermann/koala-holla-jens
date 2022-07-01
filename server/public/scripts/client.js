@@ -17,12 +17,13 @@ function setupClickListeners() {
 		// get user input and put in an object
 		// NOT WORKING YET :(
 		// using a test object
+    //change
 		let koalaToSend = {
-			name: 'testName',
-			age: 'testName',
-			gender: 'testName',
-			readyForTransfer: 'testName',
-			notes: 'testName',
+			name: $('#nameInput').val(),
+			age: $('#ageInput').val(),
+			gender: $('#genderInput').val(),
+			readyForTransfer: $('#transferInput').val(),
+			notes: $('#notesInput').val(),
 		};
 		// call saveKoala with the new obejct
     console.log('koala to send', koalaToSend );
