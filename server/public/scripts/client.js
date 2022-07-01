@@ -79,7 +79,7 @@ function renderKoala(koalas) {
     <td>${koala.ready_to_transfer}</td>
     <td>${koala.notes}</td>
     <td><button data-id="${koala.id}" id="transferBtn">Transfer</button></td>
-    <td><button data-id="${koala.id}" id="deleteBtn">>Delete</button></td>
+    <td><button data-id="${koala.id}" id="deleteBtn">Delete</button></td>
     </tr>
     `);
 	}
